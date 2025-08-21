@@ -1,0 +1,77 @@
+package adts;
+
+public class LinkedList<T> implements List<T> {
+  class LinkedListNode {
+    T data;
+    LinkedListNode next = null;
+
+    LinkedListNode(T data) {
+      this.data = data;
+    }
+  }
+
+  private LinkedListNode head = null;
+  private int length = 0;
+
+  @Override
+  public void insert(T data) {
+    LinkedListNode newNode = new LinkedListNode(data);
+    if (this.head == null) {
+      head = newNode;
+      this.length++;
+      return;
+    }
+    // else head != null
+
+    LinkedListNode aux = this.head;
+    while (aux.next != null) {
+      aux = aux.next;
+    }
+
+    aux.next = newNode;
+    this.length++;
+  }
+
+  @Override
+  public int getPos(T data) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getPos'");
+  }
+
+  @Override
+  public T get(int pos) {
+    if (pos >= this.length) {
+      throw new RuntimeException("out of range");
+    }
+
+    LinkedListNode aux = this.head;
+    for (int i = 0; i < pos; i++) {
+      aux = aux.next;
+    }
+
+    return aux.data;
+  }
+
+  @Override
+  public void remove(T data) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'remove'");
+  }
+
+  @Override
+  public void removeAt(int pos) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'removeAt'");
+  }
+
+  @Override
+  public int size() {
+    return this.length;
+  }
+
+  @Override
+  public boolean isEmpty() {
+    return this.length == 0;
+  }
+
+}
